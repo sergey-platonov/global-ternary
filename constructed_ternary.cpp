@@ -5,6 +5,9 @@ namespace sequences
 {
 
 constructed_ternary_pulse::constructed_ternary_pulse(ternary_pulse &left, ternary_pulse &right)
+#ifdef GRAPH_SEQUENCES
+    : m_graph_out("graph.txt")
+#endif
 {
     m_left = &left;
     m_right = &right;
@@ -14,6 +17,9 @@ constructed_ternary_pulse::constructed_ternary_pulse(ternary_pulse &left, ternar
 
 constructed_ternary_pulse::constructed_ternary_pulse(ternary_pulse &left,
                                                      ternary_pulse::value_type sym, ternary_pulse &right)
+#ifdef GRAPH_SEQUENCES
+    : m_graph_out("graph.txt")
+#endif
 {
     m_left = &left;
     m_right = &right;
@@ -22,6 +28,9 @@ constructed_ternary_pulse::constructed_ternary_pulse(ternary_pulse &left,
 }
 
 constructed_ternary_pulse::constructed_ternary_pulse(ternary_pulse &left, char sym, ternary_pulse &right)
+#ifdef GRAPH_SEQUENCES
+    : m_graph_out("graph.txt")
+#endif
 {
     m_left = &left;
     m_right = &right;
@@ -105,4 +114,10 @@ const ternary_pulse &constructed_ternary_pulse::right() const
     return *m_right;
 }
 
+#ifdef GRAPH_SEQUENCES
+void constructed_ternary_pulse::dump() const
+{
+    m_graph_out << ((ternary_pulse)*this) << "; " << m_left << "; " << m_right << std::endl;
+}
+#endif
 }

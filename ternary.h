@@ -17,8 +17,8 @@ std::ostream & operator << (std::ostream &os, const std::vector<T> &s)
 {
     for (std::size_t i = 0 ; i < s.size() ; i++)
     {
-        if ((s[i] >= 0) && (i > 0))
-            os << " ";
+//        if ((s[i] >= 0) && (i > 0))
+//            os << " ";
 
         os << s[i] << " ";
     }
@@ -37,7 +37,7 @@ TernaryAlphabet to_ternary(std::string s);
 class ternary_base : public std::vector<TernaryAlphabet>, public std::enable_shared_from_this<ternary_base>
 {
 public:
-    typedef correlation<ternary_base, int> correlation;
+    typedef correlation<ternary_base, int> corr;
 
     ternary_base();
     explicit ternary_base(std::string s);
@@ -46,7 +46,7 @@ public:
 
     void append(const std::vector<TernaryAlphabet> &v);
 
-    std::shared_ptr<ternary_base::correlation> cf();
+    std::shared_ptr<ternary_base::corr> cf();
     virtual ternary_base::value_type operator[] (ternary_base::size_type n) = 0;
     virtual ternary_base::value_type operator[] (ternary_base::size_type n) const = 0;
 
@@ -57,9 +57,9 @@ public:
 protected:
     void reset_cf();
 private:
-    std::shared_ptr<correlation> m_cf;
+    std::shared_ptr<corr> m_cf;
 };
-typedef ternary_base::correlation ternary_correlation;
+typedef ternary_base::corr ternary_correlation;
 
 class ternary_pulse : public ternary_base
 {

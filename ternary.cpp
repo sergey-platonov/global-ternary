@@ -73,11 +73,11 @@ void ternary_base::append(const std::vector<TernaryAlphabet> &v)
     m_cf.reset();
 }
 
-std::shared_ptr<ternary_base::correlation> ternary_base::cf()
+std::shared_ptr<ternary_base::corr> ternary_base::cf()
 {
     if (m_cf.get() == nullptr)
     {
-        m_cf.reset( new correlation(*this) );
+        m_cf.reset( new corr(*this) );
     }
     return m_cf;
 }

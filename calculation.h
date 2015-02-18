@@ -38,7 +38,7 @@ class calculation_t
 public:
     calculation_t();
 
-    void calc(ternary_pulse &a, ternary_pulse &b);
+    void calc(const ternary_pulse &a, const ternary_pulse &b);
 
     int get_max_length() const { return max_length; }
     void set_max_length(int value) { max_length = value; }
@@ -50,9 +50,11 @@ public:
     void set_show_options(show_options_t &options);
     void set_stream(std::ostream &os);
 private:
-    bool check_seq(constructed_ternary_pulse c);
+    bool check_seq(constructed_ternary_pulse &&c);
     void add_to_db(ternary_pulse t);
-    void calc_impl(ternary_pulse &a, ternary_pulse &b, std::string sym);
+    void calc_impl(const ternary_pulse &a, const ternary_pulse &b, std::string sym);
+    void calc_impl(const ternary_pulse &a, const ternary_pulse &b, char sym, std::string symbols);
+
     void print_seq(const ternary_pulse &t);
 };
 

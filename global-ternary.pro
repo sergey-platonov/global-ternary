@@ -16,4 +16,4 @@ HEADERS += \
     constructed_ternary.h \
     calculation.h
 
-QMAKE_CXXFLAGS += -std=c++11 #-DVERBOSE_DEBUG
+QMAKE_CXXFLAGS += -std=c++11 #-DGRAPH_SEQUENCES #-DVERBOSE_DEBUG

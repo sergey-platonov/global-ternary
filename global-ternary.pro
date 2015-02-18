@@ -9,6 +9,11 @@ SOURCES += main.cpp \
     constructed_ternary.cpp \
     calculation.cpp
 
+win32: {
+    SOURCES += getopt.c
+    HEADERS += getopt.h
+}
+
 HEADERS += \
     ternary.h \
     correlation.h \

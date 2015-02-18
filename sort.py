@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+# coding=utf-8
 import sys
 import operator
 
@@ -23,7 +23,7 @@ def sortfile(filename):
         seq = Sequence(line.rstrip())
         sequences.append(seq)
 
-    return sorted(sequences, key = operator.attrgetter('weight', 'lenght'))
+    return sorted(sequences, key = operator.attrgetter('lenght', 'weight'))
 
 if __name__ == '__main__':
     lst = []
@@ -32,12 +32,13 @@ if __name__ == '__main__':
     else:
         lst = sortfile("out.txt")
     
-    prevW = 0
-    print 'Вес, Длина, m0'
+    prev_len = 0
+    prev_w = 0
+    print 'Длина, Вес, m0'
     for seq in lst:
-        if prevW != seq.weight:
-            print seq.weight, ',',  seq.lenght, ',', seq.zero_count, ',', ', '.join(seq.sequence)
+        if (prev_len != seq.lenght) or (prev_w != seq.weight):
+            print seq.lenght, ',', seq.weight, ',', seq.zero_count, ',', ', '.join(seq.sequence)
         else:
-            print seq.weight, ',',  seq.lenght, ', ,', ', '.join(seq.sequence)
-        prevW = seq.weight
-
+            print seq.lenght, ',', seq.weight, ', ,', ', '.join(seq.sequence)
+        prev_len = seq.lenght
+        prev_w = seq.weight 
